@@ -140,7 +140,7 @@ function Services() {
               className="scroll-mt-32 border-b border-border py-20 lg:py-28 last:border-b-0"
             >
               <div
-                className={`grid gap-12 lg:grid-cols-[1fr_1.1fr] lg:gap-20 ${
+                className={`grid gap-12 lg:grid-cols-[1fr_1.35fr] lg:gap-16 ${
                   reverse ? "lg:[&>*:first-child]:order-2" : ""
                 }`}
               >

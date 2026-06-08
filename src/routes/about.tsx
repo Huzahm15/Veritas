@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Btn, Eyebrow, PageHero, SectionHeading } from "../components/ui-bits";
 import { ArrowRight, BadgeCheck, Compass, HeartHandshake, Microscope, Users } from "lucide-react";
+import { Testimonials } from "../components/Testimonials";
 
 export const Route = createFileRoute("/about")({
   head: () => ({

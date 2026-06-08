@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { ArrowRight, BookOpen, Bot, Code2, FileText, ShieldCheck, Sparkles, TrendingUp, Eye, Layers, Target } from "lucide-react";
 import { Btn, Eyebrow, SectionHeading } from "../components/ui-bits";
+import { Testimonials } from "../components/Testimonials";
 
 export const Route = createFileRoute("/")({
   head: () => ({

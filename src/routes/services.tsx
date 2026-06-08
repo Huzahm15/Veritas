@@ -140,21 +140,21 @@ function Services() {
               className="scroll-mt-32 border-b border-border py-20 lg:py-28 last:border-b-0"
             >
               <div
-                className={`grid gap-12 lg:grid-cols-[1fr_1.1fr] lg:gap-20 ${
+                className={`grid gap-12 lg:grid-cols-[1fr_1.35fr] lg:gap-16 ${
                   reverse ? "lg:[&>*:first-child]:order-2" : ""
                 }`}
               >
                 {/* Visual */}
                 <div className="relative">
                   <div className="absolute -inset-6 rounded-3xl bg-gradient-to-br from-champagne/60 via-ivory to-gold-soft/30 blur-2xl opacity-70" />
-                  <div className="relative aspect-square rounded-3xl border border-gold/30 bg-card p-10 shadow-[0_30px_80px_-40px_rgba(180,140,60,0.45)]">
-                    <span className="font-display text-7xl gold-text">{s.num}</span>
-                    <div className="absolute right-10 top-10 flex h-16 w-16 items-center justify-center rounded-2xl gold-gradient text-white shadow-lg">
-                      <Icon size={28} />
+                  <div className="relative aspect-[4/3] rounded-3xl border border-gold/30 bg-card p-8 shadow-[0_30px_80px_-40px_rgba(180,140,60,0.45)]">
+                    <span className="font-display text-5xl gold-text">{s.num}</span>
+                    <div className="absolute right-8 top-8 flex h-14 w-14 items-center justify-center rounded-2xl gold-gradient text-white shadow-lg">
+                      <Icon size={24} />
                     </div>
-                    <div className="absolute bottom-10 left-10 right-10">
-                      <div className="hairline mb-5" />
-                      <p className="font-display text-2xl leading-tight">{s.title}</p>
+                    <div className="absolute bottom-8 left-8 right-8">
+                      <div className="hairline mb-4" />
+                      <p className="font-display text-xl leading-tight">{s.title}</p>
                     </div>
                   </div>
                 </div>

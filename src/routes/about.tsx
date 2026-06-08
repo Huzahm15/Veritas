@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Btn, Eyebrow, PageHero, SectionHeading } from "../components/ui-bits";
 import { ArrowRight, BadgeCheck, Compass, HeartHandshake, Microscope, Users } from "lucide-react";
+import { Testimonials } from "../components/Testimonials";
 
 export const Route = createFileRoute("/about")({
   head: () => ({
@@ -158,6 +159,12 @@ function About() {
           </Btn>
         </div>
       </section>
+
+      <Testimonials
+        eyebrow="Client Perspectives"
+        title={<>Trusted by professionals who take their <span className="gold-text">reputation seriously.</span></>}
+        subtitle="A selection of perspectives from academics, clinicians, founders, and institutions we've had the privilege to support."
+      />
     </>
   );
 }

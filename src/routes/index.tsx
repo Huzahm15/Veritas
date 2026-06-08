@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { ArrowRight, BookOpen, Bot, Code2, FileText, ShieldCheck, Sparkles, TrendingUp, Eye, Layers, Target } from "lucide-react";
 import { Btn, Eyebrow, SectionHeading } from "../components/ui-bits";
+import { Testimonials } from "../components/Testimonials";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -278,6 +279,13 @@ function Home() {
           ))}
         </div>
       </section>
+
+      {/* Testimonials */}
+      <Testimonials
+        eyebrow="Client Perspectives"
+        title={<>Trusted by professionals who take their <span className="gold-text">reputation seriously.</span></>}
+        subtitle="A selection of perspectives from academics, clinicians, founders, and institutions we've had the privilege to support."
+      />
 
       {/* Closing CTA */}
       <section className="px-6 pb-8 lg:px-10">

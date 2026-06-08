@@ -26,7 +26,8 @@ export function Footer() {
               href="mailto:hello@veritasconsultation.com"
               className="mt-5 inline-flex items-center gap-2 text-sm text-charcoal hover:text-gold-deep transition-colors"
             >
-              <Mail size={14} /> hello@veritasconsultation.com
+              <Mail size={14} />
+              <span>hello@veritasconsultation.com</span>
             </a>
           </div>
 

@@ -159,6 +159,12 @@ function About() {
           </Btn>
         </div>
       </section>
+
+      <Testimonials
+        eyebrow="Client Perspectives"
+        title={<>Trusted by professionals who take their <span className="gold-text">reputation seriously.</span></>}
+        subtitle="A selection of perspectives from academics, clinicians, founders, and institutions we've had the privilege to support."
+      />
     </>
   );
 }

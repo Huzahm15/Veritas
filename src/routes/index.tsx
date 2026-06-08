@@ -280,6 +280,13 @@ function Home() {
         </div>
       </section>
 
+      {/* Testimonials */}
+      <Testimonials
+        eyebrow="Client Perspectives"
+        title={<>Trusted by professionals who take their <span className="gold-text">reputation seriously.</span></>}
+        subtitle="A selection of perspectives from academics, clinicians, founders, and institutions we've had the privilege to support."
+      />
+
       {/* Closing CTA */}
       <section className="px-6 pb-8 lg:px-10">
         <div className="relative mx-auto max-w-7xl overflow-hidden rounded-3xl bg-gradient-to-br from-charcoal via-charcoal to-[oklch(0.28_0.03_70)] px-8 py-20 text-center lg:px-16">

@@ -38,15 +38,17 @@ const encode = (data: Record<string, string>) => {
 
 function Contact() {
   const [sent, setSent] = useState(false);
+  const [error, setError] = useState(false);
   const [form, setForm] = useState({ name: "", email: "", service: "", message: "" });
 
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setError(false);
 
     if (!form.name.trim() || !form.email.trim() || !form.message.trim()) return;
 
     try {
-      await fetch("//contact-form.html", {
+      const res = await fetch("/", {
         method: "POST",
         headers: { "Content-Type": "application/x-www-form-urlencoded" },
         body: encode({
@@ -58,22 +60,26 @@ function Contact() {
         }),
       });
 
+      if (!res.ok) throw new Error("Network response was not ok");
+
       setSent(true);
       setForm({ name: "", email: "", service: "", message: "" });
-    } catch (error) {
-      console.error(error);
+    } catch (err) {
+      console.error(err);
+      setError(true);
     }
   };
 
   return (
     <>
+      {/* Hidden form for Netlify build-time detection */}
       <form name="contact" data-netlify="true" hidden>
-      <input type="text" name="name" />
-      <input type="email" name="email" />
-      <input type="text" name="service" />
-      <textarea name="message"></textarea>
-    </form>
-      
+        <input type="text" name="name" />
+        <input type="email" name="email" />
+        <input type="text" name="service" />
+        <textarea name="message"></textarea>
+      </form>
+
       <PageHero
         eyebrow="Get in touch"
         title={
@@ -175,6 +181,12 @@ function Contact() {
                     className="mt-2 w-full resize-none rounded-lg border border-input bg-background px-4 py-3 text-sm text-charcoal placeholder:text-muted-foreground/70 transition-colors focus:border-gold focus:outline-none focus:ring-2 focus:ring-gold/30"
                   />
                 </div>
+
+                {error && (
+                  <p className="text-sm text-red-500">
+                    Something went wrong. Please try again or email us directly.
+                  </p>
+                )}
 
                 <div className="flex items-center justify-between gap-4 pt-2">
                   <p className="text-xs text-muted-foreground">

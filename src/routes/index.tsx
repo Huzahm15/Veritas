@@ -4,29 +4,30 @@ import { Btn, Eyebrow, SectionHeading } from "../components/ui-bits";
 import { Testimonials } from "../components/Testimonials";
 
 export const Route = createFileRoute("/")({
-head: () => ({
-  meta: [
-    { title: "Veritas Consultation | Premium Digital Consultancy." },
-    {
-      name: "description",
-      content:
-        "Premium consultancy supporting professionals and institutions with Wikipedia pages, ebooks, AI bots, and full-stack web development.",
-    },
-    { property: "og:title", content: "Veritas Consultation" },
-    {
-      property: "og:description",
-      content:
-        "Build authority. Strengthen reputation. Create digital assets that last.",
-    },
-  ],
-  links: [
-    {
-      rel: "icon",
-      type: "image/png",
-      href: "/favicon.png",
-    },
-  ],
-}),
+  head: () => ({
+    meta: [
+      { title: "Veritas Consultation | Premium Digital Consultancy." },
+      {
+        name: "description",
+        content:
+          "Premium consultancy supporting professionals and institutions with Wikipedia pages, ebooks, AI bots, and full-stack web development.",
+      },
+      { property: "og:title", content: "Veritas Consultation" },
+      {
+        property: "og:description",
+        content: "Build authority. Strengthen reputation. Create digital assets that last.",
+      },
+    ],
+    links: [
+      {
+        rel: "icon",
+        type: "image/png",
+        href: "/favicon.png",
+      },
+    ],
+  }),
+  component: Home,
+});
 
 const services = [
   {

@@ -30,22 +30,50 @@ const serviceOptions = [
   "Not sure yet — advise me",
 ];
 
+const encode = (data: Record<string, string>) => {
+  return Object.keys(data)
+    .map((key) => encodeURIComponent(key) + "=" + encodeURIComponent(data[key]))
+    .join("&");
+};
+
 function Contact() {
   const [sent, setSent] = useState(false);
   const [form, setForm] = useState({ name: "", email: "", service: "", message: "" });
 
-  const onSubmit = (e: React.FormEvent) => {
+  const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
     if (!form.name.trim() || !form.email.trim() || !form.message.trim()) return;
-    setSent(true);
-    setForm({ name: "", email: "", service: "", message: "" });
+
+    try {
+      await fetch("/", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: encode({
+          "form-name": "contact",
+          name: form.name,
+          email: form.email,
+          service: form.service,
+          message: form.message,
+        }),
+      });
+
+      setSent(true);
+      setForm({ name: "", email: "", service: "", message: "" });
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   return (
     <>
       <PageHero
         eyebrow="Get in touch"
-        title={<>Let's shape your <span className="gold-text">digital presence.</span></>}
+        title={
+          <>
+            Let's shape your <span className="gold-text">digital presence.</span>
+          </>
+        }
         subtitle="Tell us what you're building, improving, or planning and we'll help you shape the right digital solution."
       />
 
@@ -64,6 +92,7 @@ function Contact() {
                   business day.
                 </p>
                 <button
+                  type="button"
                   onClick={() => setSent(false)}
                   className="mt-8 text-sm font-medium text-gold-deep hover:underline"
                 >
@@ -71,7 +100,15 @@ function Contact() {
                 </button>
               </div>
             ) : (
-              <form onSubmit={onSubmit} className="space-y-6">
+              <form
+                name="contact"
+                method="POST"
+                data-netlify="true"
+                onSubmit={onSubmit}
+                className="space-y-6"
+              >
+                <input type="hidden" name="form-name" value="contact" />
+
                 <div className="grid gap-6 sm:grid-cols-2">
                   <Field
                     label="Your name"
@@ -99,6 +136,7 @@ function Contact() {
                   </label>
                   <select
                     id="service"
+                    name="service"
                     value={form.service}
                     onChange={(e) => setForm({ ...form, service: e.target.value })}
                     className="mt-2 w-full appearance-none rounded-lg border border-input bg-background px-4 py-3 text-sm text-charcoal transition-colors focus:border-gold focus:outline-none focus:ring-2 focus:ring-gold/30"
@@ -121,6 +159,7 @@ function Contact() {
                   </label>
                   <textarea
                     id="message"
+                    name="message"
                     required
                     rows={6}
                     value={form.message}
@@ -147,8 +186,14 @@ function Contact() {
               <ol className="mt-5 space-y-5">
                 {[
                   { t: "Reply within a day", d: "We respond personally so no automated funnels." },
-                  { t: "30-minute consultation", d: "Scheduled at a time that suits you, by video or phone." },
-                  { t: "Tailored proposal", d: "A clear, scoped plan with timeline and investment." },
+                  {
+                    t: "30-minute consultation",
+                    d: "Scheduled at a time that suits you, by video or phone.",
+                  },
+                  {
+                    t: "Tailored proposal",
+                    d: "A clear, scoped plan with timeline and investment.",
+                  },
                 ].map((step, i) => (
                   <li key={step.t} className="flex gap-4">
                     <span className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-full bg-champagne font-display text-sm text-gold-deep">
@@ -208,6 +253,7 @@ function Field({
       </label>
       <input
         id={id}
+        name={id}
         type={type}
         required={required}
         value={value}

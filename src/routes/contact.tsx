@@ -53,6 +53,7 @@ function Contact() {
         headers: { "Content-Type": "application/x-www-form-urlencoded" },
         body: encode({
           "form-name": "contact",
+          "bot-field": "",
           name: form.name,
           email: form.email,
           service: form.service,
@@ -72,13 +73,7 @@ function Contact() {
 
   return (
     <>
-      {/* Hidden form for Netlify build-time detection */}
-      <form name="contact" data-netlify="true" hidden>
-        <input type="text" name="name" />
-        <input type="email" name="email" />
-        <input type="text" name="service" />
-        <textarea name="message"></textarea>
-      </form>
+      {/* Netlify form detection is handled by /public/contact-form.html */}
 
       <PageHero
         eyebrow="Get in touch"

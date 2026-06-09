@@ -52,7 +52,7 @@ function Contact() {
       const res = await fetch("/", {
         method: "POST",
         headers: { "Content-Type": "application/x-www-form-urlencoded" },
-        body: new URLSearchParams(formData as any).toString(),
+        body: new URLSearchParams(formData as unknown as Record<string, string>).toString(),
       });
 
       if (!res.ok) throw new Error(`Server error: ${res.status}`);

@@ -6,7 +6,7 @@ import { Testimonials } from "../components/Testimonials";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Veritas Consultation — Build Authority. Strengthen Reputation." },
+      { title: "Veritas Consultation | Premium Digital Consultancy." },
       {
         name: "description",
         content:

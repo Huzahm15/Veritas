@@ -36,35 +36,31 @@ function Contact() {
   const [form, setForm] = useState({ name: "", email: "", service: "", message: "" });
 
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    setError(false);
+  e.preventDefault();
 
-    if (!form.name.trim() || !form.email.trim() || !form.message.trim()) return;
+  const formElement = e.currentTarget;
+  const formData = new FormData(formElement);
 
-    try {
-      const formData = new FormData();
-      formData.append("form-name", "contact");
-      formData.append("name", form.name);
-      formData.append("email", form.email);
-      formData.append("service", form.service);
-      formData.append("message", form.message);
+  try {
+    const response = await fetch("/__forms.html", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+      },
+      body: new URLSearchParams(formData as any).toString(),
+    });
 
-      const res = await fetch("/", {
-        method: "POST",
-        headers: { "Content-Type": "application/x-www-form-urlencoded" },
-        body: new URLSearchParams(formData as unknown as Record<string, string>).toString(),
-      });
-
-      if (!res.ok) throw new Error(`Server error: ${res.status}`);
-
-      setSent(true);
-      setForm({ name: "", email: "", service: "", message: "" });
-    } catch (err) {
-      console.error(err);
-      setError(true);
+    if (!response.ok) {
+      throw new Error(`Form submission failed: ${response.status}`);
     }
-  };
 
+    setSent(true);
+    setForm({ name: "", email: "", service: "", message: "" });
+  } catch (error) {
+    console.error("Netlify form submission error:", error);
+  }
+};
+  
   return (
     <>
       {/* Netlify form detection is handled by /public/contact-form.html */}

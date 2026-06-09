@@ -55,6 +55,9 @@ const institutions = [
   "Carnegie Mellon",
   "University of Utah",
   "MD Anderson Cancer Center",
+  "University of Michigan",
+  "The University of Texas at Dallas",
+  "Project Athena Foundation",
 ];
 
 const values = [
@@ -66,7 +69,7 @@ const values = [
   {
     icon: Sparkles,
     title: "Polished digital presence",
-    desc: "Refined design, careful writing, and considered structure — the small details that signal a serious operator.",
+    desc: "Refined design, careful writing, and considered structure; the small details that signal a serious operator.",
   },
   {
     icon: Target,
@@ -177,23 +180,26 @@ function Home() {
       </section>
 
       {/* Institutions */}
-      <section className="border-y border-border bg-ivory/70 py-14">
-        <div className="mx-auto max-w-7xl px-6 lg:px-10">
-          <p className="text-center text-[11px] uppercase tracking-[0.35em] text-gold-deep">
-            Supporting professionals at
-          </p>
-          <div className="mt-8 grid grid-cols-2 gap-x-6 gap-y-6 md:grid-cols-5">
-            {institutions.map((name) => (
-              <div
-                key={name}
-                className="flex items-center justify-center text-center font-display text-base text-charcoal/80 md:text-lg"
-              >
-                {name}
-              </div>
-            ))}
+<section className="border-y border-border bg-ivory/70 py-14 overflow-hidden">
+  <div className="mx-auto max-w-7xl px-6 lg:px-10">
+    <p className="text-center text-[11px] uppercase tracking-[0.35em] text-gold-deep">
+      Supporting professionals at
+    </p>
+
+    <div className="mt-8 overflow-hidden trust-fade">
+      <div className="flex w-max whitespace-nowrap animate-scroll gap-16 px-10">
+        {[...institutions, ...institutions].map((name, index) => (
+          <div
+            key={`${name}-${index}`}
+            className="flex items-center justify-center text-center font-display text-base text-charcoal/80 md:text-lg"
+          >
+            {name}
           </div>
-        </div>
-      </section>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
 
       {/* Services */}
       <section className="mx-auto max-w-7xl px-6 py-24 lg:px-10 lg:py-32">
@@ -237,7 +243,7 @@ function Home() {
             <SectionHeading
               eyebrow="Why Veritas"
               title={<>A consultancy built around <span className="gold-text">credibility.</span></>}
-              subtitle="We serve clients whose reputation matters — academics, doctors, founders, executives, and institutions. Every recommendation we make is shaped by that standard."
+              subtitle="We serve clients whose reputation matters; academics, doctors, founders, executives, and institutions. Every recommendation we make is shaped by that standard."
             />
             <div className="grid gap-6 sm:grid-cols-2">
               {values.map(({ icon: Icon, title, desc }) => (
@@ -262,7 +268,7 @@ function Home() {
         <SectionHeading
           eyebrow="Outcomes"
           title={<>What clients gain.</>}
-          subtitle="The work is detailed and quiet — the results are visible."
+          subtitle="The work is detailed and quiet, the results are visible."
           center
         />
         <div className="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">

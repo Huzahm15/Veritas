@@ -40,7 +40,7 @@ const pillars = [
 
 const approach = [
   { n: "01", t: "Listen", d: "We start by understanding your audience, your record, and what 'credible' looks like in your field." },
-  { n: "02", t: "Assess", d: "An honest read on what's possible — what to publish, what to build, and where effort earns the best return." },
+  { n: "02", t: "Assess", d: "An honest read on what's possible, what to publish, what to build, and where effort earns the best return." },
   { n: "03", t: "Build", d: "Quiet, careful execution. Editorial discipline. Engineering rigor. No shortcuts that compromise trust." },
   { n: "04", t: "Sustain", d: "Monitoring, maintenance, and considered updates so the work compounds rather than decays." },
 ];
@@ -48,11 +48,35 @@ const approach = [
 function About() {
   return (
     <>
-      <PageHero
-        eyebrow="About Veritas"
-        title={<>A consultancy for people whose <span className="gold-text">reputation matters.</span></>}
-        subtitle="Veritas Consultation is a modern firm working at the intersection of reputation, content, technology, visibility, and public credibility — building digital assets that endure."
-      />
+      <section className="relative overflow-hidden border-b border-border bg-gradient-to-br from-background via-ivory to-champagne/40">
+  <div className="mx-auto grid max-w-7xl items-center gap-14 px-6 py-24 lg:grid-cols-[1.1fr_0.9fr] lg:px-10 lg:py-32">
+    <div>
+      <Eyebrow>About Veritas</Eyebrow>
+
+      <h1 className="mt-6 font-display text-5xl leading-[1.05] md:text-6xl lg:text-7xl text-balance">
+        A consultancy for people whose{" "}
+        <span className="gold-text">reputation matters.</span>
+      </h1>
+
+      <p className="mt-7 max-w-2xl text-lg leading-relaxed text-muted-foreground">
+        Veritas Consultation is a modern firm working at the intersection of reputation,
+        content, technology, visibility, and public credibility; building digital assets
+        that endure.
+      </p>
+    </div>
+
+    <div className="hidden lg:flex items-center justify-center">
+      <div className="relative flex h-[420px] w-[420px] items-center justify-center rounded-[2rem] border border-gold/20 bg-white/60 shadow-[0_30px_80px_-30px_rgba(180,140,60,0.35)] backdrop-blur-sm">
+        <div className="absolute inset-8 rounded-[1.5rem] border border-gold/10" />
+        <img
+          src="/Logo.png"
+          alt="Veritas Consultation"
+          className="relative h-78 w-78 object-contain"
+        />
+      </div>
+    </div>
+  </div>
+</section>
 
       {/* Pillars strip */}
       <section className="border-b border-border bg-ivory/60 py-10">
@@ -120,7 +144,7 @@ function About() {
               <h3 className="mt-5 font-display text-2xl">Why credibility matters</h3>
               <p className="mt-3 text-[15px] leading-relaxed text-muted-foreground">
                 Decisions about hiring, funding, partnership, and care increasingly start with a
-                search. Credibility online isn't vanity — it's how stakeholders evaluate whether to
+                search. Credibility online isn't vanity, it's how stakeholders evaluate whether to
                 trust the person or institution behind the work.
               </p>
               <p className="mt-3 text-[15px] leading-relaxed text-muted-foreground">

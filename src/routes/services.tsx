@@ -41,11 +41,11 @@ const services: Service[] = [
     icon: FileText,
     title: "Wikipedia Page Creation & Editing",
     lede: "From notability assessment and independent source research to neutral drafting, submission, and post-publication monitoring, fully aligned with Wikipedia's editorial guidelines.",
-    body: "A Wikipedia page is one of the most visible and most scrutinized digital assets a professional can hold. We approach every engagement as editors first — verifying notability, sourcing rigorously, drafting in a neutral encyclopedic voice, and shepherding the article through submission and ongoing maintenance.",
+    body: "A Wikipedia page is one of the most visible and most scrutinized digital assets a professional can hold. We approach every engagement as editors first; verifying notability, sourcing rigorously, drafting in a neutral encyclopedic voice, and shepherding the article through submission and ongoing maintenance.",
     points: [
       "Notability assessment grounded in Wikipedia's criteria",
       "Independent, reliable source research and curation",
-      "Neutral, encyclopedic drafting — no promotional language",
+      "Neutral, encyclopedic drafting, no promotional language",
       "Submission support and reviewer communication",
       "Editorial guideline awareness across every revision",
       "Post-publication monitoring and considered updates",
@@ -58,7 +58,7 @@ const services: Service[] = [
     icon: BookOpen,
     title: "Ebook Services",
     lede: "Professional ebook development for experts, academics, founders, and thought leaders, including concept shaping, structure, writing support, editing, and polished final presentation.",
-    body: "A well-made ebook is an authority asset — a structured, citable expression of expertise that compounds over years. We help you shape the idea, plan the architecture, write or refine the manuscript, and deliver a polished final artifact your audience will take seriously.",
+    body: "A well-made ebook is an authority asset; a structured, citable expression of expertise that compounds over years. We help you shape the idea, plan the architecture, write or refine the manuscript, and deliver a polished final artifact your audience will take seriously.",
     points: [
       "Topic and concept refinement",
       "Outline and chapter-level structure",
@@ -75,7 +75,7 @@ const services: Service[] = [
     icon: Bot,
     title: "AI Bot Services",
     lede: "Custom AI assistants trained on your business, services, research, or knowledge base to provide intelligent, accurate, and branded user interaction.",
-    body: "Off-the-shelf AI is generic. We build assistants trained on your material — your research, your offerings, your guidelines — wrapped in an interface that matches your brand and answers in your voice. Used as website concierges, research aides, or internal knowledge tools.",
+    body: "Off-the-shelf AI is generic. We build assistants trained on your material, your research, your offerings, your guidelines; wrapped in an interface that matches your brand and answers in your voice. Used as website concierges, research aides, or internal knowledge tools.",
     points: [
       "Website assistant for visitor questions and routing",
       "Research assistant trained on your publications",
@@ -92,7 +92,7 @@ const services: Service[] = [
     icon: Code2,
     title: "Full-stack Web Development",
     lede: "High-performance websites and web platforms designed for credibility, modern user experience, functionality, and long-term scalability.",
-    body: "Your website is, for most stakeholders, the first impression. We design and build sites that hold up to scrutiny — fast, accessible, beautifully typeset, and engineered cleanly enough to grow with you for years.",
+    body: "Your website is, for most stakeholders, the first impression. We design and build sites that hold up to scrutiny; fast, accessible, beautifully typeset, and engineered cleanly enough to grow with you for years.",
     points: [
       "Personal authority sites for founders, executives, and consultants",
       "Profiles and platforms for academics and medical professionals",
@@ -111,7 +111,7 @@ function Services() {
       <PageHero
         eyebrow="Services"
         title={<>Four focused solutions for <span className="gold-text">authority and presence.</span></>}
-        subtitle="Veritas Consultation offers a deliberately narrow set of services — each engineered for professionals and institutions who want their digital presence to match the quality of their work."
+        subtitle="Veritas Consultation offers a deliberately narrow set of services, each engineered for professionals and institutions who want their digital presence to match the quality of their work."
       />
 
       {/* Anchor nav */}

@@ -30,9 +30,11 @@ export function Navbar() {
     >
       <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 lg:px-10">
         <Link to="/" className="group flex items-center gap-2.5" onClick={() => setOpen(false)}>
-          <span className="flex h-9 w-9 items-center justify-center rounded-full gold-gradient text-white font-display text-lg shadow-sm">
-            V
-          </span>
+          <img
+  src="/Initial-V.png"
+  alt="Veritas Consultation"
+  className="h-12 w-12 object-contain"
+/>
           <span className="flex flex-col leading-tight">
             <span className="font-display text-lg text-charcoal">Veritas</span>
             <span className="text-[10px] uppercase tracking-[0.25em] text-muted-foreground">

@@ -10,7 +10,7 @@ export const Route = createFileRoute("/contact")({
       {
         name: "description",
         content:
-          "Tell us what you're building, improving, or planning — we'll help you shape the right digital solution.",
+          "Tell us what you're building, improving, or planning and we'll help you shape the right digital solution.",
       },
       { property: "og:title", content: "Contact Veritas Consultation" },
       {
@@ -46,7 +46,7 @@ function Contact() {
       <PageHero
         eyebrow="Get in touch"
         title={<>Let's shape your <span className="gold-text">digital presence.</span></>}
-        subtitle="Tell us what you're building, improving, or planning — we'll help you shape the right digital solution."
+        subtitle="Tell us what you're building, improving, or planning and we'll help you shape the right digital solution."
       />
 
       <section className="mx-auto max-w-7xl px-6 py-20 lg:px-10 lg:py-28">
@@ -146,7 +146,7 @@ function Contact() {
               <Eyebrow>What happens next</Eyebrow>
               <ol className="mt-5 space-y-5">
                 {[
-                  { t: "Reply within a day", d: "We respond personally — no automated funnels." },
+                  { t: "Reply within a day", d: "We respond personally so no automated funnels." },
                   { t: "30-minute consultation", d: "Scheduled at a time that suits you, by video or phone." },
                   { t: "Tailored proposal", d: "A clear, scoped plan with timeline and investment." },
                 ].map((step, i) => (
@@ -167,7 +167,7 @@ function Contact() {
 
             <div className="space-y-4 text-sm">
               <InfoRow icon={Mail} label="Email" value="hello@veritasconsultation.com" />
-              <InfoRow icon={Clock} label="Hours" value="Mon–Fri · 9:00 – 18:00" />
+              <InfoRow icon={Clock} label="Hours" value="24/7 - Globally" />
               <InfoRow icon={MapPin} label="Working with clients" value="Globally · Remote-first" />
             </div>
 

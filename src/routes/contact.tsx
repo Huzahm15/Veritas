@@ -67,6 +67,13 @@ function Contact() {
 
   return (
     <>
+      <form name="contact" data-netlify="true" hidden>
+      <input type="text" name="name" />
+      <input type="email" name="email" />
+      <input type="text" name="service" />
+      <textarea name="message"></textarea>
+    </form>
+      
       <PageHero
         eyebrow="Get in touch"
         title={

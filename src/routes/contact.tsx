@@ -46,7 +46,7 @@ function Contact() {
     if (!form.name.trim() || !form.email.trim() || !form.message.trim()) return;
 
     try {
-      await fetch("/", {
+      await fetch("//contact-form.html", {
         method: "POST",
         headers: { "Content-Type": "application/x-www-form-urlencoded" },
         body: encode({

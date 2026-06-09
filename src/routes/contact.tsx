@@ -30,12 +30,6 @@ const serviceOptions = [
   "Not sure yet — advise me",
 ];
 
-const encode = (data: Record<string, string>) => {
-  return Object.keys(data)
-    .map((key) => encodeURIComponent(key) + "=" + encodeURIComponent(data[key]))
-    .join("&");
-};
-
 function Contact() {
   const [sent, setSent] = useState(false);
   const [error, setError] = useState(false);
@@ -48,20 +42,20 @@ function Contact() {
     if (!form.name.trim() || !form.email.trim() || !form.message.trim()) return;
 
     try {
+      const formData = new FormData();
+      formData.append("form-name", "contact");
+      formData.append("name", form.name);
+      formData.append("email", form.email);
+      formData.append("service", form.service);
+      formData.append("message", form.message);
+
       const res = await fetch("/", {
         method: "POST",
         headers: { "Content-Type": "application/x-www-form-urlencoded" },
-        body: encode({
-          "form-name": "contact",
-          "bot-field": "",
-          name: form.name,
-          email: form.email,
-          service: form.service,
-          message: form.message,
-        }),
+        body: new URLSearchParams(formData as any).toString(),
       });
 
-      if (!res.ok) throw new Error("Network response was not ok");
+      if (!res.ok) throw new Error(`Server error: ${res.status}`);
 
       setSent(true);
       setForm({ name: "", email: "", service: "", message: "" });

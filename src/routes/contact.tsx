@@ -42,7 +42,7 @@ function Contact() {
     if (!form.name.trim() || !form.email.trim() || !form.message.trim()) return;
 
     try {
-      const res = await fetch("/.netlify/functions/contact", {
+      const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/x-www-form-urlencoded" },
         body: new URLSearchParams({

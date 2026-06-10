@@ -121,12 +121,12 @@ function Contact() {
               </div>
             ) : (
               <form
-                name="contact"
-                method="POST"
-                data-netlify="true"
-                netlify-honeypot="bot-field"
-                onSubmit={onSubmit}
-                className="space-y-6"
+  name="contact"
+  method="POST"
+  data-netlify="true"
+  netlify-honeypot="bot-field"
+  action="/contact-success.html"
+  className="space-y-6"
               >
                 <input type="hidden" name="form-name" value="contact" />
 

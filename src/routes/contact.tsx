@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { useEffect, useState } from "react";
 import { Btn, Eyebrow, PageHero } from "../components/ui-bits";
-import { Clock, Mail, MapPin } from "lucide-react";
+import { Check, Clock, Mail, MapPin } from "lucide-react";
 
 export const Route = createFileRoute("/contact")({
   head: () => ({
@@ -30,6 +31,13 @@ const serviceOptions = [
 ];
 
 function Contact() {
+  const [sent, setSent] = useState(false);
+
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    setSent(params.get("success") === "true");
+  }, []);
+
   return (
     <>
       <PageHero
@@ -46,73 +54,95 @@ function Contact() {
         <div className="grid gap-14 lg:grid-cols-[1.2fr_1fr]">
           {/* Form */}
           <div className="rounded-3xl border border-border bg-card p-8 shadow-[0_30px_80px_-50px_rgba(180,140,60,0.4)] lg:p-12">
-            <form
-              name="contact"
-              method="POST"
-              data-netlify="true"
-              netlify-honeypot="bot-field"
-              action="/contact-success.html"
-              className="space-y-6"
-            >
-              <input type="hidden" name="form-name" value="contact" />
+            {sent ? (
+              <div className="flex flex-col items-center py-10 text-center">
+                <div className="flex h-16 w-16 items-center justify-center rounded-full gold-gradient text-white">
+                  <Check size={28} />
+                </div>
 
-              <p className="hidden">
-                <label>
-                  Do not fill this out:
-                  <input name="bot-field" />
-                </label>
-              </p>
+                <h2 className="mt-6 font-display text-3xl">Message received.</h2>
 
-              <div className="grid gap-6 sm:grid-cols-2">
-                <Field label="Your name" id="name" required />
-                <Field label="Email" id="email" type="email" required />
-              </div>
-
-              <div>
-                <label
-                  htmlFor="service"
-                  className="block text-xs uppercase tracking-[0.2em] text-muted-foreground"
-                >
-                  Service of interest
-                </label>
-                <select
-                  id="service"
-                  name="service"
-                  className="mt-2 w-full appearance-none rounded-lg border border-input bg-background px-4 py-3 text-sm text-charcoal transition-colors focus:border-gold focus:outline-none focus:ring-2 focus:ring-gold/30"
-                >
-                  <option value="">Select a service…</option>
-                  {serviceOptions.map((s) => (
-                    <option key={s} value={s}>
-                      {s}
-                    </option>
-                  ))}
-                </select>
-              </div>
-
-              <div>
-                <label
-                  htmlFor="message"
-                  className="block text-xs uppercase tracking-[0.2em] text-muted-foreground"
-                >
-                  Your message
-                </label>
-                <textarea
-                  id="message"
-                  name="message"
-                  required
-                  rows={6}
-                  placeholder="A few sentences about your goals, your audience, and what you'd like to build or improve."
-                  className="mt-2 w-full resize-none rounded-lg border border-input bg-background px-4 py-3 text-sm text-charcoal placeholder:text-muted-foreground/70 transition-colors focus:border-gold focus:outline-none focus:ring-2 focus:ring-gold/30"
-                />
-              </div>
-
-              <div className="flex items-center justify-between gap-4 pt-2">
-                <p className="text-xs text-muted-foreground">
-                  Replies within 1 business day. All conversations are confidential.
+                <p className="mt-3 max-w-md text-muted-foreground">
+                  Thank you for reaching out. A member of the Veritas team will reply within one
+                  business day.
                 </p>
-                <Btn type="submit">Send Message</Btn>
+
+                <a
+                  href="/contact"
+                  className="mt-8 text-sm font-medium text-gold-deep hover:underline"
+                >
+                  Send another message
+                </a>
               </div>
-            </form>
+            ) : (
+              <form
+                name="contact"
+                method="POST"
+                data-netlify="true"
+                netlify-honeypot="bot-field"
+                action="/contact?success=true"
+                className="space-y-6"
+              >
+                <input type="hidden" name="form-name" value="contact" />
+
+                <p className="hidden">
+                  <label>
+                    Do not fill this out:
+                    <input name="bot-field" />
+                  </label>
+                </p>
+
+                <div className="grid gap-6 sm:grid-cols-2">
+                  <Field label="Your name" id="name" required />
+                  <Field label="Email" id="email" type="email" required />
+                </div>
+
+                <div>
+                  <label
+                    htmlFor="service"
+                    className="block text-xs uppercase tracking-[0.2em] text-muted-foreground"
+                  >
+                    Service of interest
+                  </label>
+                  <select
+                    id="service"
+                    name="service"
+                    className="mt-2 w-full appearance-none rounded-lg border border-input bg-background px-4 py-3 text-sm text-charcoal transition-colors focus:border-gold focus:outline-none focus:ring-2 focus:ring-gold/30"
+                  >
+                    <option value="">Select a service…</option>
+                    {serviceOptions.map((s) => (
+                      <option key={s} value={s}>
+                        {s}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+
+                <div>
+                  <label
+                    htmlFor="message"
+                    className="block text-xs uppercase tracking-[0.2em] text-muted-foreground"
+                  >
+                    Your message
+                  </label>
+                  <textarea
+                    id="message"
+                    name="message"
+                    required
+                    rows={6}
+                    placeholder="A few sentences about your goals, your audience, and what you'd like to build or improve."
+                    className="mt-2 w-full resize-none rounded-lg border border-input bg-background px-4 py-3 text-sm text-charcoal placeholder:text-muted-foreground/70 transition-colors focus:border-gold focus:outline-none focus:ring-2 focus:ring-gold/30"
+                  />
+                </div>
+
+                <div className="flex items-center justify-between gap-4 pt-2">
+                  <p className="text-xs text-muted-foreground">
+                    Replies within 1 business day. All conversations are confidential.
+                  </p>
+                  <Btn type="submit">Send Message</Btn>
+                </div>
+              </form>
+            )}
           </div>
 
           {/* Side info */}

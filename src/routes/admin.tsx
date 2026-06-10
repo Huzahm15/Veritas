@@ -29,7 +29,7 @@ function Admin() {
     setLoading(true);
     setError("");
     try {
-      const res = await fetch(`/.netlify/functions/submissions?key=${encodeURIComponent(adminKey)}`);
+      const res = await fetch(`/api/submissions?key=${encodeURIComponent(adminKey)}`);
       if (res.status === 401) {
         setError("Invalid admin key.");
         setAuthed(false);

@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Btn, Eyebrow, PageHero } from "../components/ui-bits";
 import { Check, Clock, Mail, MapPin } from "lucide-react";
 
@@ -30,13 +30,57 @@ const serviceOptions = [
   "Not sure yet — advise me",
 ];
 
+function encode(data: Record<string, string>) {
+  return new URLSearchParams(data).toString();
+}
+
 function Contact() {
   const [sent, setSent] = useState(false);
+  const [error, setError] = useState(false);
+  const [form, setForm] = useState({
+    name: "",
+    email: "",
+    service: "",
+    message: "",
+  });
 
-  useEffect(() => {
-    const params = new URLSearchParams(window.location.search);
-    setSent(params.get("success") === "true");
-  }, []);
+  const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setError(false);
+
+    if (!form.name.trim() || !form.email.trim() || !form.message.trim()) return;
+
+    try {
+      const res = await fetch("/", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded",
+        },
+        body: encode({
+          "form-name": "contact",
+          name: form.name,
+          email: form.email,
+          service: form.service,
+          message: form.message,
+        }),
+      });
+
+      if (!res.ok) {
+        throw new Error(`Netlify form error: ${res.status}`);
+      }
+
+      setSent(true);
+      setForm({
+        name: "",
+        email: "",
+        service: "",
+        message: "",
+      });
+    } catch (err) {
+      console.error(err);
+      setError(true);
+    }
+  };
 
   return (
     <>
@@ -67,12 +111,13 @@ function Contact() {
                   business day.
                 </p>
 
-                <a
-                  href="/contact"
+                <button
+                  type="button"
+                  onClick={() => setSent(false)}
                   className="mt-8 text-sm font-medium text-gold-deep hover:underline"
                 >
                   Send another message
-                </a>
+                </button>
               </div>
             ) : (
               <form
@@ -80,7 +125,7 @@ function Contact() {
                 method="POST"
                 data-netlify="true"
                 netlify-honeypot="bot-field"
-                action="/contact?success=true"
+                onSubmit={onSubmit}
                 className="space-y-6"
               >
                 <input type="hidden" name="form-name" value="contact" />
@@ -93,8 +138,22 @@ function Contact() {
                 </p>
 
                 <div className="grid gap-6 sm:grid-cols-2">
-                  <Field label="Your name" id="name" required />
-                  <Field label="Email" id="email" type="email" required />
+                  <Field
+                    label="Your name"
+                    id="name"
+                    value={form.name}
+                    onChange={(v) => setForm({ ...form, name: v })}
+                    required
+                  />
+
+                  <Field
+                    label="Email"
+                    id="email"
+                    type="email"
+                    value={form.email}
+                    onChange={(v) => setForm({ ...form, email: v })}
+                    required
+                  />
                 </div>
 
                 <div>
@@ -104,9 +163,12 @@ function Contact() {
                   >
                     Service of interest
                   </label>
+
                   <select
                     id="service"
                     name="service"
+                    value={form.service}
+                    onChange={(e) => setForm({ ...form, service: e.target.value })}
                     className="mt-2 w-full appearance-none rounded-lg border border-input bg-background px-4 py-3 text-sm text-charcoal transition-colors focus:border-gold focus:outline-none focus:ring-2 focus:ring-gold/30"
                   >
                     <option value="">Select a service…</option>
@@ -125,15 +187,24 @@ function Contact() {
                   >
                     Your message
                   </label>
+
                   <textarea
                     id="message"
                     name="message"
                     required
                     rows={6}
+                    value={form.message}
+                    onChange={(e) => setForm({ ...form, message: e.target.value })}
                     placeholder="A few sentences about your goals, your audience, and what you'd like to build or improve."
                     className="mt-2 w-full resize-none rounded-lg border border-input bg-background px-4 py-3 text-sm text-charcoal placeholder:text-muted-foreground/70 transition-colors focus:border-gold focus:outline-none focus:ring-2 focus:ring-gold/30"
                   />
                 </div>
+
+                {error && (
+                  <p className="text-sm text-red-500">
+                    Something went wrong. Please try again or email us directly.
+                  </p>
+                )}
 
                 <div className="flex items-center justify-between gap-4 pt-2">
                   <p className="text-xs text-muted-foreground">
@@ -200,11 +271,15 @@ function Contact() {
 function Field({
   label,
   id,
+  value,
+  onChange,
   type = "text",
   required,
 }: {
   label: string;
   id: string;
+  value: string;
+  onChange: (v: string) => void;
   type?: string;
   required?: boolean;
 }) {
@@ -218,6 +293,8 @@ function Field({
         name={id}
         type={type}
         required={required}
+        value={value}
+        onChange={(e) => onChange(e.target.value)}
         className="mt-2 w-full rounded-lg border border-input bg-background px-4 py-3 text-sm text-charcoal transition-colors focus:border-gold focus:outline-none focus:ring-2 focus:ring-gold/30"
       />
     </div>

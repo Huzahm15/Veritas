@@ -36,31 +36,33 @@ function Contact() {
   const [form, setForm] = useState({ name: "", email: "", service: "", message: "" });
 
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-  e.preventDefault();
+    e.preventDefault();
+    setError(false);
 
-  const formElement = e.currentTarget;
-  const formData = new FormData(formElement);
+    if (!form.name.trim() || !form.email.trim() || !form.message.trim()) return;
 
-  try {
-    const response = await fetch("/__forms.html", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/x-www-form-urlencoded",
-      },
-      body: new URLSearchParams(formData as any).toString(),
-    });
+    try {
+      const res = await fetch("/.netlify/functions/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: new URLSearchParams({
+          name: form.name,
+          email: form.email,
+          service: form.service,
+          message: form.message,
+        }).toString(),
+      });
 
-    if (!response.ok) {
-      throw new Error(`Form submission failed: ${response.status}`);
+      if (!res.ok) throw new Error(`Server error: ${res.status}`);
+
+      setSent(true);
+      setForm({ name: "", email: "", service: "", message: "" });
+    } catch (err) {
+      console.error(err);
+      setError(true);
     }
+  };
 
-    setSent(true);
-    setForm({ name: "", email: "", service: "", message: "" });
-  } catch (error) {
-    console.error("Netlify form submission error:", error);
-  }
-};
-  
   return (
     <>
       {/* Netlify form detection is handled by /public/contact-form.html */}

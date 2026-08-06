@@ -23,11 +23,11 @@ export function Footer() {
               digital authority and lasting credibility through refined, ethical execution.
             </p>
             <a
-              href="mailto:hello@veritasconsultation.com"
+              href="mailto:sales@veritasconsultation.com"
               className="mt-5 inline-flex items-center gap-2 text-sm text-charcoal hover:text-gold-deep transition-colors"
             >
               <Mail size={14} />
-              <span>hello@veritasconsultation.com</span>
+              <span>sales@veritasconsultation.com</span>
             </a>
           </div>
 

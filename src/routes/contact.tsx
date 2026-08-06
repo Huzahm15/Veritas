@@ -59,12 +59,12 @@ export const Route = createFileRoute("/contact")({
               description: PAGE_DESC,
               url: "https://veritasconsu.netlify.app/",
               areaServed: "Worldwide",
-              email: "hello@veritasconsultation.com",
+              email: "sales@veritasconsultation.com",
               priceRange: "$$$",
               contactPoint: {
                 "@type": "ContactPoint",
                 contactType: "customer service",
-                email: "hello@veritasconsultation.com",
+                email: "sales@veritasconsultation.com",
                 availableLanguage: ["English"],
               },
             },
@@ -322,7 +322,7 @@ function ContactFormSection() {
           <div className="hairline" />
 
           <div className="space-y-4 text-sm">
-            <InfoRow icon={Mail} label="Email" value="hello@veritasconsultation.com" />
+            <InfoRow icon={Mail} label="Email" value="sales@veritasconsultation.com" />
             <InfoRow icon={Clock} label="Hours" value="Mon–Fri · 9:00 – 18:00" />
             <InfoRow icon={MapPin} label="Working with clients" value="Globally · Remote-first" />
           </div>

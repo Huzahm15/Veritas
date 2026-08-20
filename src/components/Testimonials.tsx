@@ -12,28 +12,24 @@ const testimonials: Testimonial[] = [
   {
     quote:
       "Your team did an excellent job. My article was well-written and ahead of schedule.",
-    name: "Dr. Jack Alan Roth",
     title: "Principal Investigator",
     org: "MD Anderson Cancer Center",
   },
   {
     quote:
       "Your service was excellent: very responsive to my suggestions, and thorough in terms of making sure the references and citations were correct.",
-    name: "Prof. David Garlan",
     title: "Associate Dean for Master’s Programs in the School of Computer Science",
     org: "Carnegie Mellon University",
   },
   {
     quote:
       "They were very professional and know all the rules that wikipedia enforces.I highly recommend them.",
-    name: "Dr. Diane Harper",
     title: "Physician-Scientist",
     org: "University of Michigan Medical School",
   },
   {
     quote:
       "The web page looks terrific!",
-    name: "Dean Jones",
     title: "Professor of Medicine",
     org: "Emory School of Medicine",
   },
